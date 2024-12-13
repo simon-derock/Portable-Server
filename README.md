@@ -1,220 +1,214 @@
-# Portable-Server
+# Portable Server
 ***Developed by: PHILIP SIMON DEROCK P***
 
+## Project Overview
+
+This project demonstrates how to transform an old laptop into a fully functional *Portable Server*. The server is configured for wireless operation using Wi-Fi and mobile hotspots. It supports services like web hosting, file sharing, and real-time application deployment. This guide provides a comprehensive walkthrough of the server setup process, including installation, configuration, and service deployment.
 
 
-## Wireless Server Using an Old Laptop
+## Components
 
-This project demonstrates how to transform an old laptop into a fully functional **Portable Server**. The server is configured for wireless operation using Wi-Fi and mobile hotspots. It supports services like web hosting, file sharing, and real-time application deployment. This guide provides a comprehensive walkthrough of the server setup process, including installation, configuration, and service deployment.
+### Hardware Components
+
+- **Laptop**: Lenovo E41-25
+- **Processor**: AMD PRO A4-4350B, 2.50 GHz
+- **RAM**: CRUCIAL DDR4 4GB RAM
+- **Storage**: WD Green 240 GB SATA SSD
+- **Network Interface**: Realtek PCIe GbE Family Controller
+- **Additional Hardware**: RJ45 Cable, Dual Band Fibernet Wi-fi Router
+
+### Software Components
+
+- **Operating System**: Ubuntu Live Server 22.04.2
+- **Web Server**: Apache2
+- **Containers**: Docker
+- **FTP Server**: Vsftpd
+- **Java**: JDK 21
+- **Network Management Tools**: Network-manager, wpasupplicant
+- **Performance Monitoring**: Nload 0.7.4
 
 ---
 
-## Features
-- **Cost-Effective Solution**: Utilizes an old laptop, reducing the need for new hardware.
-- **Dual-Boot Support**: Provides flexibility by enabling Ubuntu Server alongside an existing OS.
-- **Wireless Operation**: Fully functional without Ethernet cables.
-- **Web Hosting**: Includes Apache web server for hosting websites and applications.
-- **Remote Administration**: Configured for secure SSH access.
-- **Extensible**: Supports additional services like Docker,JDK,FTP, and SFTP.
+## Key Features
+
+- Compact form factor for mobility.
+- Low power consumption with high-efficiency hardware.
+- Capabilities include web hosting, file sharing, database management.
+- Wireless connectivity using Wi-Fi and mobile hotspots.
 
 ---
 
-## Contents
-[Introduction](#introduction)
+## Table of Contents
 
-[Components Used](#components-used)
-   - [Hardware Components](#hardware-components)
-   
-   - [Software Components](#software-components)
-    
- [Installation and Configuration](#installation-and-configuration)
-
-   - [Creating a Bootable Device](#creating-a-bootable-device)
-     
-   - [Booting from Install Media](#booting-from-install-media)
-     
-   - [Initial Setup](#initial-setup)
-     
- [Initial Server Configuration](#initial-server-configuration)
-
-   - [Setting Up Users and Groups](#setting-up-users-and-groups)
-     
-   - [Configuring SSH Access](#configuring-ssh-access)
-     
- [Server Services](#server-services)
-
-   - [Apache Web Server](#apache-web-server)
-     
- [Connecting Server Over Wi-Fi](#connecting-server-over-wi-fi)
-
- [Conclusion](#conclusion)
- 
- [References](#references)
+1. [Introduction](#introduction)
+2. [Installation and Configuration](#installation-and-configuration)
+3. [Initial Server Configuration](#initial-server-configuration)
+4. [Server Services](#server-services)
+5. [Connecting Server Over Wi-Fi](#connecting-server-over-wi-fi)
+6. [Analysis](#analysis)
+7. [Figures](#figures)
+8. [Conclusion](#conclusion)
+9. [References](#references)
 
 ---
 
 ## Introduction
-This project explores the transformation of an old **Lenovo E41-25** laptop into a **Portable NAS Server**. With Ubuntu Live Server 22.04.2 installed, the server is optimized for wireless operation and tailored for diverse use cases such as file sharing, web hosting, and development. The use of lightweight Linux distributions extends the life and utility of older hardware.
 
-Key benefits include:
-- Cost-effectiveness by reusing existing hardware.
-- A built-in UPS with the laptop battery.
-- Dual-boot support for flexibility.
-- Wireless operation using Wi-Fi and mobile hotspots.
+One might have something in mind that would benefit from having an "always-on, always-available" computer. This project explores repurposing an old Lenovo laptop to act as a Linux server with dual-boot functionality for portability and flexibility.
 
----
-
-## Components Used
-
-### Hardware Components
-- **Laptop**: Lenovo E41-25  
-- **Processor**: AMD PRO A4-4350B, 2.50 GHz  
-- **RAM**: CRUCIAL DDR4, 4 GB  
-- **Storage**: WD Green 240 GB SATA SSD  
-- **NIC**: Realtek PCIe GbE Family Controller (1.0 Gbps)  
-- **Router**: NEET Link HG323DAC (Dual Band, 5 GHz + 2.4 GHz)  
-- **RJ45 Cable**: CAT 6E RJ45, 10 Gbps  
-
-### Software Components
-- **Operating System**: Ubuntu Live Server 22.04.2  
-- **Web Server**: Apache2  
-- **Containers**: Docker  
-- **FTP Server**: Vsftpd  
-- **SFTP Server**: SFTP Drive 2022  
-- **Utilities**: Network-Manager CLI, WPA Supplicant, Nload  
+By installing a lightweight Linux distribution like Ubuntu Server, we maximize resource utilization, extending the laptop's lifespan and versatility. Unique features include wireless server connectivity and minimal installation for reduced footprint and enhanced security.
 
 ---
 
 ## Installation and Configuration
 
-### Creating a Bootable Device
-1. Download the Ubuntu Server ISO from the [official website](https://ubuntu.com/download/server).
-2. Use tools like Rufus, Startup Disk Creator, or Unetbootin to create a bootable USB device.
-3. Burn the ISO to the USB drive:
-   ```bash
-   sudo dd if=/path/to/iso of=/dev/sdX bs=4M status=progress
-   ```
+### 1. Creating a Bootable Device
 
-### Booting from Install Media
-1. Insert the bootable USB into the laptop.
-2. Power on and boot from the USB.
-3. Follow the installation prompts:
-   - Select language and time zone.
-   - Configure network connections.
-   - Partition the storage (guided or manual).
-   - Set up a hostname and create a user account.
+1. Download the Ubuntu Server ISO.
+2. Use tools like Rufus, Etcher, or Startup Disk Creator to create a bootable USB drive.
+3. Boot from the USB and follow the installation prompts to set up the server.
 
-### Initial Setup
-1. Log in to the server:
-   ```bash
-   ssh username@server_ip
-   ```
-   
-   
+### 2. Boot from Install Media
+
+1. Insert the bootable USB.
+2. Select "Install Ubuntu Server" from the GRUB menu.
+3. Configure network and storage settings:
+   - Network settings include setting up DHCP or assigning static IP addresses.
+   - Storage settings involve guided or manual partitioning of disks.
+
+### 3. Initial Setup
+
+1. Log in with the username and password created during installation.
 2. Update the system:
    ```bash
    sudo apt update && sudo apt full-upgrade
    sudo apt autoremove && sudo apt autoclean
    ```
+3. Create necessary partitions and set up user accounts.
 
 ---
 
 ## Initial Server Configuration
 
 ### Setting Up Users and Groups
+
 1. Add a new user:
    ```bash
-   sudo adduser username
-   sudo usermod -aG sudo username
+   sudo adduser <username>
+   sudo usermod -aG sudo <username>
    ```
 
-### Configuring SSH Access
-
-
-1. Install and enable SSH server:
+2. Enable SSH for remote access:
    ```bash
    sudo apt install openssh-server
-   sudo systemctl enable ssh --now
+   sudo systemctl enable --now ssh
    sudo ufw allow ssh
    ```
-2. Connect remotely via SSH:
-   ```bash
-   ssh username@server_ip
-   ```
+
+3. Configure secure login and group privileges for better server security.
 
 ---
 
 ## Server Services
 
-### Apache Web Server
-   
-
-
-
+### Apache Web Server Setup
 
 1. Install Apache:
    ```bash
    sudo apt install apache2
+   sudo ufw allow 'Apache'
    ```
-2. Enable and start the service:
+2. Create a virtual host configuration file:
    ```bash
-   sudo systemctl enable apache2 --now
+   sudo nano /etc/apache2/sites-available/your_domain.conf
    ```
-3. Test the server:
-   - Retrieve the server's IP:
-     ```bash
-     hostname -I
-     ```
-   - Access the default Apache page in your browser:
-     ```
-     http://server_ip
-     ```
+3. Restart Apache:
+   ```bash
+   sudo systemctl restart apache2
+   ```
+
+### Additional Services
+
+1. **FTP Server Setup**:
+   - Install and configure Vsftpd for file sharing.
+   ```bash
+   sudo apt install vsftpd
+   ```
+2. **Docker Installation**:
+   - Setup containerized applications for lightweight and efficient services.
+   ```bash
+   sudo apt install docker.io
+   ```
+
+3. **Performance Monitoring Tools**:
+   - Use tools like `nload` for real-time network traffic monitoring.
 
 ---
 
 ## Connecting Server Over Wi-Fi
 
-The server is configured for wireless connectivity via Wi-Fi or mobile hotspots.
-
-
-
-1. **Identify the Wi-Fi Interface**:
+1. Identify the wireless interface:
    ```bash
-   sudo ls -l /sys/class/net
+   ls -l /sys/class/net
    ```
-2. **Edit the Netplan Configuration File**:
+2. Edit the Netplan configuration:
    ```bash
-   sudo vim /etc/netplan/00-installer-config.yaml
+   sudo nano /etc/netplan/00-installer-config.yaml
    ```
-   Replace the content with:
+   Add your Wi-Fi credentials:
    ```yaml
    network:
      version: 2
+     renderer: networkd
      wifis:
-       wlp0s20f3:
-         access-points:
-           "YourWiFiName":
-             password: "YourWiFiPassword"
+       <interface_name>:
          dhcp4: true
+         access-points:
+           "<SSID>":
+             password: "<password>"
    ```
-3. **Apply the Changes**:
+3. Apply changes:
    ```bash
    sudo netplan apply
    ```
-4. **Verify the Connection**:
+4. Verify the connection by pinging a remote server:
    ```bash
    ping 8.8.8.8
    ```
 
 ---
 
+## Analysis
+
+### Key Areas of Evaluation
+
+1. **Hardware Analysis**: Assessing CPU, RAM, and storage for workload suitability.
+2. **Operating System**: Chosen for efficiency and hardware compatibility.
+3. **Software and Services**: Evaluating compatibility and resource usage.
+4. **Networking**: Ensuring secure and reliable configurations.
+5. **Security**: Implementing robust firewalls, SSH configurations, and regular updates.
+6. **Performance Monitoring**: Utilizing tools to monitor and optimize resource utilization.
+
+---
+
+## Figures
+
+1. **GNU GRUB Installation Page** - Visual reference for the boot menu.
+2. **Network Configuration** - Example YAML configuration for Netplan.
+3. **Storage Partitioning** - Guided disk setup illustration.
+4. **SSH Setup** - Example output for enabling and verifying SSH services.
+
+---
+
 ## Conclusion
-This project demonstrates the feasibility of converting an old laptop into a **Portable NAS Server**. The setup offers flexibility, portability, and cost-effectiveness while enabling modern functionalities like wireless operation and web hosting. By following the guide, users can extend the life of older hardware and create a robust server environment.
+
+This project provides a comprehensive guide for setting up a Portable NAS Server using Ubuntu Server. From installation and configuration to advanced service setup and wireless connectivity, the outlined steps ensure a secure and efficient server environment tailored to diverse needs. The PNS demonstrates significant potential for mobility, energy efficiency, and rapid deployment in various scenarios.
 
 ---
 
 ## References
-- [Ubuntu Documentation](https://ubuntu.com/server/docs)
-- [LinuxConfig: Connecting to Wi-Fi](https://linuxconfig.org/ubuntu-20-04-connect-to-wifi-from-command-line)
-- [Apache Web Server Setup](https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-server-on-ubuntu-20-04)
-- [Netplan Configuration](https://netplan.io/reference)
+
+1. [Ubuntu Documentation](https://ubuntu.com/server/docs)
+2.  [Make Use Of](https://www.makeuseof.com/connect-to-wifi-network-on-ubuntu-server/)
+3. [Linux For Devices](https://www.linuxfordevices.com/tutorials/ubuntu/connect-wifi-terminal-command-line)
+4. [LinuxConfig: Connecting to Wi-Fi](https://linuxconfig.org/ubuntu-20-04-connect-to-wifi-from-command-line)
