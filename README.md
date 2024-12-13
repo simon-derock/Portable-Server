@@ -1,9 +1,11 @@
 # Portable-Server
+***Developed by: PHILIP SIMON DEROCK P***
+
 
 
 ## Wireless Server Using an Old Laptop
 
-This project demonstrates how to transform an old laptop into a fully functional **Portable NAS Server**. The server is configured for wireless operation using Wi-Fi and mobile hotspots. It supports services like web hosting, file sharing, and real-time application deployment. This guide provides a comprehensive walkthrough of the server setup process, including installation, configuration, and service deployment.
+This project demonstrates how to transform an old laptop into a fully functional **Portable Server**. The server is configured for wireless operation using Wi-Fi and mobile hotspots. It supports services like web hosting, file sharing, and real-time application deployment. This guide provides a comprehensive walkthrough of the server setup process, including installation, configuration, and service deployment.
 
 ---
 
@@ -17,23 +19,37 @@ This project demonstrates how to transform an old laptop into a fully functional
 
 ---
 
-## Table of Contents
-1. [Introduction](#introduction)
-2. [Components Used](#components-used)
+## Contents
+[Introduction](#introduction)
+
+[Components Used](#components-used)
    - [Hardware Components](#hardware-components)
+   
    - [Software Components](#software-components)
-3. [Installation and Configuration](#installation-and-configuration)
+    
+ [Installation and Configuration](#installation-and-configuration)
+
    - [Creating a Bootable Device](#creating-a-bootable-device)
+     
    - [Booting from Install Media](#booting-from-install-media)
+     
    - [Initial Setup](#initial-setup)
-4. [Initial Server Configuration](#initial-server-configuration)
+     
+ [Initial Server Configuration](#initial-server-configuration)
+
    - [Setting Up Users and Groups](#setting-up-users-and-groups)
+     
    - [Configuring SSH Access](#configuring-ssh-access)
-5. [Server Services](#server-services)
+     
+ [Server Services](#server-services)
+
    - [Apache Web Server](#apache-web-server)
-6. [Connecting Server Over Wi-Fi](#connecting-server-over-wi-fi)
-7. [Conclusion](#conclusion)
-8. [References](#references)
+     
+ [Connecting Server Over Wi-Fi](#connecting-server-over-wi-fi)
+
+ [Conclusion](#conclusion)
+ 
+ [References](#references)
 
 ---
 
@@ -93,6 +109,8 @@ Key benefits include:
    ```bash
    ssh username@server_ip
    ```
+   
+   
 2. Update the system:
    ```bash
    sudo apt update && sudo apt full-upgrade
@@ -111,6 +129,8 @@ Key benefits include:
    ```
 
 ### Configuring SSH Access
+
+
 1. Install and enable SSH server:
    ```bash
    sudo apt install openssh-server
@@ -127,6 +147,11 @@ Key benefits include:
 ## Server Services
 
 ### Apache Web Server
+   
+
+
+
+
 1. Install Apache:
    ```bash
    sudo apt install apache2
@@ -148,7 +173,10 @@ Key benefits include:
 ---
 
 ## Connecting Server Over Wi-Fi
+
 The server is configured for wireless connectivity via Wi-Fi or mobile hotspots.
+
+
 
 1. **Identify the Wi-Fi Interface**:
    ```bash
